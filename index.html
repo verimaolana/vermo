@@ -58,13 +58,15 @@ ul li,div {
   <li class="hor"><img src="http://freewallpaperdesktop.info/wp-content/uploads/2013/04/HD-Wallpaper-Fantasy-Landscape-at-The-Mountain-300x200.jpg"/></li>
 </ul>
    <br/><hr/><br/>
-    <div class="cuad"><img src="https://i.ytimg.com/vi_webp/T54HP9tiGVQ/maxresdefault.webp"/></div>
+    <div class="cropcenterimg"><div class="cuad"><img src="https://i.ytimg.com/vi_webp/T54HP9tiGVQ/maxresdefault.webp"/></div></div>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
       <script>
 $(function () {
   CenterCropImage($('.cropcenterimg li'));
+  CenterCropImage($('.cropcenterimg div'));
   $(window).resize(function () {
     CenterCropImage($('.cropcenterimg li'));
+   CenterCropImage($('.cropcenterimg div'));
   });
 });
 
