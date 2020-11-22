@@ -1,133 +1,28 @@
-
-<!DOCTYPE html>
-<html lang="en" >
+<!doctype html>
+<html>
 <head>
-<meta charset="UTF-8"> 
-<meta content='IE=edge' http-equiv='X-UA-Compatible'/>
-<meta content='width=device-width, initial-scale=1' name='viewport'/>
- <title>CodePen - Center Crop Image with jquery</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>smooth-scrollbar Basic Example</title>
+<link href="https://www.cssscript.com/wp-includes/css/sticky.css" rel="stylesheet" type="text/css">
+<link href="https://www.cssscript.com/demo/customizable-scrollbar-smooth-scroll-smooth-scrollbar/dist/smooth-scrollbar.css" rel="stylesheet" type="text/css">
 <style>
- *{
- margin: 0;
-  padding: 0;
- }
-ul,
-li {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-img {
-  display: block;
-  margin: 0;
-}
-ul {
-  overflow: hidden;
-  display: block;
-}
-ul li,div {
-  display: block;
-  float: left;
-  margin-right: 10px;
-  overflow: hidden;
-  text-align: center;
-  border: 3px solid #ccc;
-}
-.hor {
-  width: 200px;
-  height: 140px;
-}
-.vert {
-  width: 160px;
-  height: 200px;
-}
-.cuad {
-  width: 200px;
-  height: 200px;
-}
-.resp li {
-  width: 30%;
-  height: 200px;
+section {
+  width: 600px;
+  height: 450px;
+  overflow: auto;
+  margin:20px auto;
 }
 </style>
 </head>
-  <body>
-<ul class="fixed cropcenterimg">
-  <li class="cuad"><img src="https://i.ytimg.com/vi_webp/T54HP9tiGVQ/maxresdefault.webp"/></li>
-  <li class="vert"><img src="http://hqdesktop.net/wallpapers/l/1920x1080/29/mountains_landscapes_venezuela_waterfalls_angel_falls_1920x1080_28165.jpg"/></li>
-  <li class="hor"><img src="http://freewallpaperdesktop.info/wp-content/uploads/2013/04/HD-Wallpaper-Fantasy-Landscape-at-The-Mountain-300x200.jpg"/></li>
-</ul>
-   <br/><hr/><br/>
-    <div class="cropcenterimg"><div class="cuad"><img src="https://i.ytimg.com/vi_webp/T54HP9tiGVQ/maxresdefault.webp"/></div></div>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-      <script>
-$(function () {
-  CenterCropImage($('.cropcenterimg li'));
-  CenterCropImage($('.cropcenterimg div'));
-  $(window).resize(function () {
-    CenterCropImage($('.cropcenterimg li'));
-   CenterCropImage($('.cropcenterimg div'));
-  });
-});
 
-/***CENTER CROP IMAGE***/
-function CenterCropImage(x) {
-  x.each(function () {
-    $(this).children('img').load(function () {
-      ContentBox = $(this).parent();
-      PropBox = getProportions(ContentBox);
-
-      ImgtoResize = $(this);
-      PropImg = getProportions(ImgtoResize);
-      if (PropBox > PropImg) {
-        ProportionVertical(ImgtoResize);
-      } else
-      {
-        ProportionHorizontal(ImgtoResize);
-      }
-    });
-    ContentBox = $(this);
-    PropBox = getProportions(ContentBox);
-
-    ImgtoResize = $(this).children('img');
-    PropImg = getProportions(ImgtoResize);
-    if (PropBox > PropImg) {
-      ProportionVertical(ImgtoResize);
-    } else
-    {
-      ProportionHorizontal(ImgtoResize);
-    }
-  });
-}
-
-
-function getProportions(x) {
-  Height = x.height();
-  Width = x.width();
-  Prop = Width / Height;
-  return Prop;
-}
-
-function ProportionHorizontal(x) {
-  x.removeAttr("style");
-  x.css({ 'height': '100%', 'width': 'auto' });
-  Wimg = x.width();
-  Wcont = x.parent().width();
-
-  MarginLeft = (Wcont - Wimg) / 2;
-  x.css({ 'margin-left': MarginLeft });
-}
-
-function ProportionVertical(x) {
-  x.removeAttr("style");
-  x.css({ 'width': '100%', 'height': 'auto' });
-  Himg = x.height();
-  Hcont = x.parent().height();
-
-  MarginTop = (Hcont - Himg) / 2;
-  x.css({ 'margin-top': MarginTop });
-}
-    </script>
+<body>
+<h1 style="margin:150px auto 30px auto; text-align:center">smooth-scrollbar Basic Example</h1>
+<section data-scrollbar> <img src="https://unsplash.it/1200/900?image=665"></section>
+<script src="https://www.cssscript.com/demo/customizable-scrollbar-smooth-scroll-smooth-scrollbar/dist/smooth-scrollbar.js"></script> 
+<script>
+Scrollbar.initAll();
+</script>
 </body>
 </html>
-
