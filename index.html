@@ -1,1 +1,130 @@
-infdex bro
+
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+<meta charset="UTF-8"> 
+<meta content='IE=edge' http-equiv='X-UA-Compatible'/>
+<meta content='width=device-width, initial-scale=1' name='viewport'/>
+ <title>CodePen - Center Crop Image with jquery</title>
+<style>
+body {
+  font-family: 'arial', sans-serif;
+}
+ul,
+li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+img {
+  display: block;
+  margin: 0;
+}
+ul {
+  overflow: hidden;
+  display: block;
+}
+ul li {
+  display: block;
+  float: left;
+  margin-right: 10px;
+  overflow: hidden;
+  text-align: center;
+  border: 3px solid #ccc;
+}
+.hor {
+  width: 200px;
+  height: 140px;
+}
+.vert {
+  width: 160px;
+  height: 200px;
+}
+.cuad {
+  width: 200px;
+  height: 200px;
+}
+.resp li {
+  width: 30%;
+  height: 200px;
+}
+</style>
+</head>
+  <body translate="no" >
+  <h1>Center Crop Image - Fixed sizes box</h1>
+<ul class="fixed cropcenterimg">
+  <li class="cuad"><img src="https://i.ytimg.com/vi_webp/T54HP9tiGVQ/maxresdefault.webp"/></li>
+  <li class="vert"><img src="https://i.ytimg.com/vi_webp/T54HP9tiGVQ/maxresdefault.webp"/></li>
+  <li class="hor"><img src="https://i.ytimg.com/vi_webp/T54HP9tiGVQ/maxresdefault.webp"/></li>
+</ul>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+      <script id="rendered-js" >
+$(function () {
+  CenterCropImage($('.cropcenterimg li'));
+  $(window).resize(function () {
+    CenterCropImage($('.cropcenterimg li'));
+  });
+});
+
+/***CENTER CROP IMAGE***/
+function CenterCropImage(x) {
+  x.each(function () {
+    $(this).children('img').load(function () {
+      ContentBox = $(this).parent();
+      PropBox = getProportions(ContentBox);
+
+      ImgtoResize = $(this);
+      PropImg = getProportions(ImgtoResize);
+      if (PropBox > PropImg) {
+        ProportionVertical(ImgtoResize);
+      } else
+      {
+        ProportionHorizontal(ImgtoResize);
+      }
+    });
+    ContentBox = $(this);
+    PropBox = getProportions(ContentBox);
+
+    ImgtoResize = $(this).children('img');
+    PropImg = getProportions(ImgtoResize);
+    if (PropBox > PropImg) {
+      ProportionVertical(ImgtoResize);
+    } else
+    {
+      ProportionHorizontal(ImgtoResize);
+    }
+  });
+}
+
+
+function getProportions(x) {
+  Height = x.height();
+  Width = x.width();
+  Prop = Width / Height;
+  return Prop;
+}
+
+function ProportionHorizontal(x) {
+  x.removeAttr("style");
+  x.css({ 'height': '100%', 'width': 'auto' });
+  Wimg = x.width();
+  Wcont = x.parent().width();
+
+  MarginLeft = (Wcont - Wimg) / 2;
+  x.css({ 'margin-left': MarginLeft });
+}
+
+function ProportionVertical(x) {
+  x.removeAttr("style");
+  x.css({ 'width': '100%', 'height': 'auto' });
+  Himg = x.height();
+  Hcont = x.parent().height();
+
+  MarginTop = (Hcont - Himg) / 2;
+  x.css({ 'margin-top': MarginTop });
+}
+//# sourceURL=pen.js
+    </script>
+</body>
+</html>
+
